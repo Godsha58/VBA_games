@@ -1,0 +1,507 @@
+
+    For fila = 1 To 8
+        For columna = 1 To 8
+        
+        'mostrar movimientos de la reina
+        If tablero(fila, columna).estado = "ocupada" And Piezas(fila, columna).tipo = "queen" And Piezas(fila, columna).color <> turno Then
+                
+                'atras
+                
+                f = fila - 1
+                c = columna
+                
+                
+                While f >= 1
+                    idboton = "b" & f & c
+                    If Piezas(f, c).color <> turno Then 'fuego amigo
+                        If tablero(f, c).estado = "ocupada" Then 'detecta enemigo
+                            Me.Controls(idboton).BackColor = RGB(255, 165, 0)
+                            Me.Controls(idboton).Enabled = False
+                            f = 0
+                        Else
+                            Me.Controls(idboton).BackColor = RGB(255, 255, 0)
+                            Me.Controls(idboton).Enabled = False
+                            f = f - 1
+                        End If
+                    Else
+                        f = 0
+                    End If
+                Wend
+                
+                'adelante
+                
+                f = fila + 1
+                c = columna
+                
+                While f <= 8
+                    idboton = "b" & f & c
+                    If Piezas(f, c).color <> turno Then 'fuego amigo
+                        If tablero(f, c).estado = "ocupada" Then 'detecta enemigo
+                            Me.Controls(idboton).BackColor = RGB(255, 165, 0)
+                            Me.Controls(idboton).Enabled = False
+                            f = 9
+                        Else
+                            Me.Controls(idboton).BackColor = RGB(255, 255, 0)
+                            Me.Controls(idboton).Enabled = False
+                            f = f + 1
+                        End If
+                    Else
+                        f = 9
+                    End If
+                Wend
+                
+                'izquierda
+                
+                f = fila
+                c = columna - 1
+                
+                While c >= 1
+                    idboton = "b" & f & c
+                    If Piezas(f, c).color <> turno Then 'fuego amigo
+                        If tablero(f, c).estado = "ocupada" Then 'detecta enemigo
+                            Me.Controls(idboton).BackColor = RGB(255, 165, 0)
+                            Me.Controls(idboton).Enabled = False
+                            c = 0
+                        Else
+                            Me.Controls(idboton).BackColor = RGB(255, 255, 0)
+                            Me.Controls(idboton).Enabled = False
+                            c = c - 1
+                        End If
+                    Else
+                        c = 0
+                    End If
+                Wend
+                
+                'derecha
+                
+                f = fila
+                c = columna + 1
+                
+                While c <= 8
+                    idboton = "b" & f & c
+                    If Piezas(f, c).color <> turno Then 'fuego amigo
+                        If tablero(f, c).estado = "ocupada" Then 'detecta enemigo
+                            Me.Controls(idboton).BackColor = RGB(255, 165, 0)
+                            Me.Controls(idboton).Enabled = False
+                            c = 9
+                        Else
+                            Me.Controls(idboton).BackColor = RGB(255, 255, 0)
+                            Me.Controls(idboton).Enabled = False
+                            c = c + 1
+                        End If
+                    Else
+                        c = 9
+                    End If
+                Wend
+                
+                'diagonal derecha arriba
+                
+                f = fila + 1
+                c = columna + 1
+                
+                While c <= 8 And f <= 8
+                    idboton = "b" & f & c
+                    If Piezas(f, c).color <> turno Then 'fuego amigo
+                        If tablero(f, c).estado = "ocupada" Then 'detecta enemigo
+                            Me.Controls(idboton).BackColor = RGB(255, 165, 0)
+                            Me.Controls(idboton).Enabled = False
+                            f = 9
+                        Else
+                            Me.Controls(idboton).BackColor = RGB(255, 255, 0)
+                            Me.Controls(idboton).Enabled = False
+                            f = f + 1
+                            c = c + 1
+                        End If
+                    Else
+                        f = 9
+                    End If
+                Wend
+                
+                'diagonal derecha abajo
+                
+                f = fila - 1
+                c = columna + 1
+                
+                While c <= 8 And f >= 1
+                    idboton = "b" & f & c
+                    If Piezas(f, c).color <> turno Then 'fuego amigo
+                        If tablero(f, c).estado = "ocupada" Then 'detecta enemigo
+                            Me.Controls(idboton).BackColor = RGB(255, 165, 0)
+                            Me.Controls(idboton).Enabled = False
+                            f = 0
+                        Else
+                            Me.Controls(idboton).BackColor = RGB(255, 255, 0)
+                            Me.Controls(idboton).Enabled = False
+                            f = f - 1
+                            c = c + 1
+                        End If
+                    Else
+                        f = 0
+                    End If
+                Wend
+                
+                'diagonal izquierda arriba
+                
+                f = fila + 1
+                c = columna - 1
+                
+                While c >= 1 And f <= 8
+                    idboton = "b" & f & c
+                    If Piezas(f, c).color <> turno Then
+                        If tablero(f, c).estado = "ocupada" Then
+                            Me.Controls(idboton).BackColor = RGB(255, 165, 0)
+                            Me.Controls(idboton).Enabled = False
+                            f = 9
+                        Else
+                            Me.Controls(idboton).BackColor = RGB(255, 255, 0)
+                            Me.Controls(idboton).Enabled = False
+                            f = f + 1
+                            c = c - 1
+                        End If
+                    Else
+                        f = 9
+                    End If
+                Wend
+                
+                'diagonal izquierda abajo
+                
+                f = fila - 1
+                c = columna - 1
+                
+                While c >= 1 And f >= 1
+                    idboton = "b" & f & c
+                    If Piezas(f, c).color <> turno Then
+                        If tablero(f, c).estado = "ocupada" Then
+                            Me.Controls(idboton).BackColor = RGB(255, 165, 0)
+                            Me.Controls(idboton).Enabled = False
+                            f = 0
+                        Else
+                            Me.Controls(idboton).BackColor = RGB(255, 255, 0)
+                            Me.Controls(idboton).Enabled = False
+                            f = f - 1
+                            c = c - 1
+                        End If
+                    Else
+                        f = 0
+                    End If
+                Wend
+        End If
+        
+        'mostrar movimientos del alfil
+        If tablero(fila, columna).estado = "ocupada" And Piezas(fila, columna).tipo = "bishop" And Piezas(fila, columna).color <> turno Then
+        
+            'diagonal derecha arriba
+                
+                f = fila + 1
+                c = columna + 1
+                
+                While c <= 8 And f <= 8
+                    idboton = "b" & f & c
+                    If Piezas(f, c).color <> turno Then 'fuego amigo
+                        If tablero(f, c).estado = "ocupada" Then 'detecta enemigo
+                            Me.Controls(idboton).BackColor = RGB(255, 165, 0)
+                            Me.Controls(idboton).Enabled = False
+                            f = 9
+                        Else
+                            Me.Controls(idboton).BackColor = RGB(255, 255, 0)
+                            Me.Controls(idboton).Enabled = False
+                            f = f + 1
+                            c = c + 1
+                        End If
+                    Else
+                        f = 9
+                    End If
+                Wend
+                
+                'diagonal derecha abajo
+                
+                f = fila - 1
+                c = columna + 1
+                
+                While c <= 8 And f >= 1
+                    idboton = "b" & f & c
+                    If Piezas(f, c).color <> turno Then 'fuego amigo
+                        If tablero(f, c).estado = "ocupada" Then 'detecta enemigo
+                            Me.Controls(idboton).BackColor = RGB(255, 165, 0)
+                            Me.Controls(idboton).Enabled = False
+                            f = 0
+                        Else
+                            Me.Controls(idboton).BackColor = RGB(255, 255, 0)
+                            Me.Controls(idboton).Enabled = False
+                            f = f - 1
+                            c = c + 1
+                        End If
+                    Else
+                        f = 0
+                    End If
+                Wend
+                
+                'diagonal izquierda arriba
+                
+                f = fila + 1
+                c = columna - 1
+                
+                While c >= 1 And f <= 8
+                    idboton = "b" & f & c
+                    If Piezas(f, c).color <> turno Then
+                        If tablero(f, c).estado = "ocupada" Then
+                            Me.Controls(idboton).BackColor = RGB(255, 165, 0)
+                            Me.Controls(idboton).Enabled = False
+                            f = 9
+                        Else
+                            Me.Controls(idboton).BackColor = RGB(255, 255, 0)
+                            Me.Controls(idboton).Enabled = False
+                            f = f + 1
+                            c = c - 1
+                        End If
+                    Else
+                        f = 9
+                    End If
+                Wend
+                
+                'diagonal izquierda abajo
+                
+                f = fila - 1
+                c = columna - 1
+                
+                While c >= 1 And f >= 1
+                    idboton = "b" & f & c
+                    If Piezas(f, c).color <> turno Then
+                        If tablero(f, c).estado = "ocupada" Then
+                            Me.Controls(idboton).BackColor = RGB(255, 165, 0)
+                            Me.Controls(idboton).Enabled = False
+                            f = 0
+                        Else
+                            Me.Controls(idboton).BackColor = RGB(255, 255, 0)
+                            Me.Controls(idboton).Enabled = False
+                            f = f - 1
+                            c = c - 1
+                        End If
+                    Else
+                        f = 0
+                    End If
+                Wend
+        End If
+        'mostrar movimientos de la torre
+        If tablero(fila, columna).estado = "ocupada" And Piezas(fila, columna).tipo = "rook" And Piezas(fila, columna).color <> turno Then
+            
+            'atras
+                
+                f = fila - 1
+                c = columna
+                
+                
+                While f >= 1
+                    idboton = "b" & f & c
+                    If Piezas(f, c).color <> turno Then 'fuego amigo
+                        If tablero(f, c).estado = "ocupada" Then 'detecta enemigo
+                            Me.Controls(idboton).BackColor = RGB(255, 165, 0)
+                            Me.Controls(idboton).Enabled = False
+                            f = 0
+                        Else
+                            Me.Controls(idboton).BackColor = RGB(255, 255, 0)
+                            Me.Controls(idboton).Enabled = False
+                            f = f - 1
+                        End If
+                    Else
+                        f = 0
+                    End If
+                Wend
+                
+                'adelante
+                
+                f = fila + 1
+                c = columna
+                jaque = False
+                
+                While f <= 8
+                    idboton = "b" & f & c
+                    If Piezas(f, c).color <> turno Then 'fuego amigo
+                        If tablero(f, c).estado = "ocupada" Then 'detecta enemigo
+                            Me.Controls(idboton).BackColor = RGB(255, 165, 0)
+                            Me.Controls(idboton).Enabled = False
+                            f = 9
+                        Else
+                            Me.Controls(idboton).BackColor = RGB(255, 255, 0)
+                            Me.Controls(idboton).Enabled = False
+                            f = f + 1
+                        End If
+                    Else
+                        f = 9
+                    End If
+                Wend
+                
+                'izquierda
+                
+                f = fila
+                c = columna - 1
+                
+                While c >= 1
+                    idboton = "b" & f & c
+                    If Piezas(f, c).color <> turno Then 'fuego amigo
+                        If tablero(f, c).estado = "ocupada" Then 'detecta enemigo
+                            Me.Controls(idboton).BackColor = RGB(255, 165, 0)
+                            Me.Controls(idboton).Enabled = False
+                            c = 0
+                        Else
+                            Me.Controls(idboton).BackColor = RGB(255, 255, 0)
+                            Me.Controls(idboton).Enabled = False
+                            c = c - 1
+                        End If
+                    Else
+                        c = 0
+                    End If
+                Wend
+                
+                'derecha
+                
+                f = fila
+                c = columna + 1
+                
+                While c <= 8
+                    idboton = "b" & f & c
+                    If Piezas(f, c).color <> turno Then 'fuego amigo
+                        If tablero(f, c).estado = "ocupada" Then 'detecta enemigo
+                            Me.Controls(idboton).BackColor = RGB(255, 165, 0)
+                            Me.Controls(idboton).Enabled = False
+                            c = 9
+                        Else
+                            Me.Controls(idboton).BackColor = RGB(255, 255, 0)
+                            Me.Controls(idboton).Enabled = False
+                            c = c + 1
+                        End If
+                    Else
+                        c = 9
+                    End If
+                Wend
+        End If
+        
+        'mostrar movimientos del caballo
+        
+        If tablero(fila, columna).estado = "ocupada" And Piezas(fila, columna).tipo = "knight" And Piezas(fila, columna).color <> turno Then
+            
+            f = fila
+            c = columna
+            
+            'movimientos de arriba
+            If f < 7 Then
+                If c < 8 And f < 8 Then
+                    'este if es para ver si se puede mover arriba a la derecha y comer
+                    If tablero(f + 2, c + 1).estado = "empty" Then
+                        idboton = "b" & (f + 2) & (c + 1)
+                        Me.Controls(idboton).BackColor = RGB(255, 255, 0)
+                        Me.Controls(idboton).Enabled = False
+                    ElseIf Piezas(f + 2, c + 1).color <> turno And tablero(f + 2, c + 1).estado = "ocupada" And Piezas(f + 2, c + 1).tipo <> "king" Then
+                        idboton = "b" & (f + 2) & (c + 1)
+                        Me.Controls(idboton).BackColor = RGB(255, 255, 0)
+                        Me.Controls(idboton).Enabled = False
+                    End If
+                End If
+                
+                If c > 1 And f < 8 Then
+                    'Este if es para ver si se puede mover arriba a la izquierda y comer
+                    If tablero(f + 2, c - 1).estado = "empty" Then
+                        idboton = "b" & (f + 2) & (c - 1)
+                        Me.Controls(idboton).BackColor = RGB(255, 255, 0)
+                        Me.Controls(idboton).Enabled = False
+                    ElseIf Piezas(f + 2, c - 1).color <> turno And tablero(f + 2, c - 1).estado = "ocupada" And Piezas(f + 2, c - 1).tipo <> "king" Then
+                        idboton = "b" & (f + 2) & (c - 1)
+                        Me.Controls(idboton).BackColor = RGB(255, 255, 0)
+                        Me.Controls(idboton).Enabled = False
+                    End If
+                End If
+            End If
+            
+            'movimientos de abajo
+            If f > 2 Then
+                If c < 8 Then
+                    'este if es para ver si se puede mover abajo a la derecha y comer
+                    If tablero(f - 2, c + 1).estado = "empty" Then
+                        idboton = "b" & (f - 2) & (c + 1)
+                        Me.Controls(idboton).BackColor = RGB(255, 255, 0)
+                        Me.Controls(idboton).Enabled = False
+                    ElseIf Piezas(f - 2, c + 1).color <> turno And tablero(f - 2, c + 1).estado = "ocupada" And Piezas(f - 2, c + 1).tipo <> "king" Then
+                        idboton = "b" & (f - 2) & (c + 1)
+                        Me.Controls(idboton).BackColor = RGB(255, 165, 0)
+                        Me.Controls(idboton).Enabled = False
+                    End If
+                End If
+                
+                If c > 1 Then
+                    'Este if es para ver si se puede mover abajo a la izquierda y comer
+                    If tablero(f - 2, c - 1).estado = "empty" Then
+                        idboton = "b" & (f - 2) & (c - 1)
+                        Me.Controls(idboton).BackColor = RGB(255, 255, 0)
+                        Me.Controls(idboton).Enabled = False
+                    ElseIf Piezas(f - 2, c - 1).color <> turno And tablero(f - 2, c - 1).estado = "ocupada" And Piezas(f - 2, c - 1).tipo <> "king" Then
+                        idboton = "b" & (f - 2) & (c - 1)
+                        Me.Controls(idboton).BackColor = RGB(255, 165, 0)
+                        Me.Controls(idboton).Enabled = False
+                    End If
+                End If
+            End If
+            
+            'movimientos a la derecha
+            If c < 7 Then
+                If f < 8 Then
+                    'este if es para ver si se puede mover derecha arriba y comer
+                    If tablero(f + 1, c + 2).estado = "empty" Then
+                        idboton = "b" & (f + 1) & (c + 2)
+                        Me.Controls(idboton).BackColor = RGB(255, 255, 0)
+                        Me.Controls(idboton).Enabled = False
+                    ElseIf Piezas(f + 1, c + 2).color <> turno And tablero(f + 1, c + 2).estado = "ocupada" And Piezas(f + 1, c + 2).tipo <> "king" Then
+                        idboton = "b" & (f + 1) & (c + 2)
+                        Me.Controls(idboton).BackColor = RGB(255, 255, 0)
+                        Me.Controls(idboton).Enabled = False
+                    End If
+                End If
+                If f > 1 Then
+                    'Este if es para ver si se puede mover derecha abajo y comer
+                    If tablero(f - 1, c + 2).estado = "empty" Then
+                        idboton = "b" & (f - 1) & (c + 2)
+                        Me.Controls(idboton).BackColor = RGB(255, 255, 0)
+                        Me.Controls(idboton).Enabled = False
+                    ElseIf Piezas(f - 1, c + 2).color <> turno And tablero(f - 1, c + 2).estado = "ocupada" And Piezas(f - 1, c + 2).tipo <> "king" Then
+                        idboton = "b" & (f - 1) & (c + 2)
+                        Me.Controls(idboton).BackColor = RGB(255, 255, 0)
+                        Me.Controls(idboton).Enabled = False
+                    End If
+                End If
+            End If
+        End If
+        
+        'movimientos del peon
+        
+        f = fila
+        c = columna
+        
+        If tablero(fila, columna).estado = "ocupada" And Piezas(fila, columna).tipo = "pawn" And Piezas(fila, columna).color <> turno Then
+        'if para comer una pieza a la derecha
+                If columna < 8 And fila > 1 Then
+                    If tablero(f - 1, c + 1).estado = "empty" Then
+                        idboton = "b" & (f - 1) & (c + 1)
+                        Me.Controls(idboton).BackColor = RGB(255, 255, 0)
+                        Me.Controls(idboton).Enabled = False
+                    ElseIf tablero(f - 1, c + 1).estado = "ocupada" And Piezas(f - 1, c + 1).tipo <> "king" Then
+                        idboton = "b" & (f - 1) & (c + 1)
+                        Me.Controls(idboton).BackColor = RGB(255, 165, 0)
+                        Me.Controls(idboton).Enabled = False
+                    End If
+                End If
+                
+        'if para comer una pieza a la izquierda
+                If columna > 1 And fila > 1 Then
+                    If tablero(f - 1, c - 1).estado = "empty" Then
+                        idboton = "b" & (f - 1) & (c - 1)
+                        Me.Controls(idboton).BackColor = RGB(255, 255, 0)
+                        Me.Controls(idboton).Enabled = False
+                    ElseIf tablero(f - 1, c + 1).estado = "ocupada" And Piezas(f - 1, c + 1).tipo <> "king" Then
+                        idboton = "b" & (f - 1) & (c - 1)
+                        Me.Controls(idboton).BackColor = RGB(255, 165, 0)
+                        Me.Controls(idboton).Enabled = False
+                    End If
+                End If
+            End If
+        
+        Next columna
+    Next fila
